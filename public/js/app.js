@@ -99,10 +99,38 @@ const  sigeIn = () =>
     console.log("user registered successfully")
     user.password = step
     userDataTemplat.userDataBase.push(user)
+    return 1
 }
 
+const logeIn = () =>
+{
+    let email =""
+    let password =""
+    while(true)
+    {
+        email = prompt("Enter your email :")
+        password = prompt("Enter your password :")
 
-sigeIn()
+        let index = userDataTemplat.userDataBase.findIndex(e => e.email == email) 
+        if(index != -1)
+        {
+            console.log("this email exist");
+            if(userDataTemplat.userDataBase[index].password == password)
+            {
+                console.log("welcome nigga")
+                return true
+            }
+            
+        }
+        console.log("email or password does not exist")
+        return false
+    }
+}
+userDataTemplat.userDataBase.push({name: "ayoub",email:"ayoubennacir@gmail.com",password : "gtasani@"})
+
+
+
+console.log(logeIn())
 
 //     + If the user only writes "exit," they exit the current process, and the choice question is asked again.
 //         * If the user chooses to sign up, here are the details they must enter:
