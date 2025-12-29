@@ -25,6 +25,7 @@ class userDataTemplat {
         this.email = email
         this.age = age
         this.balance = balance
+        this.loan = false
     }
 }
 
@@ -194,6 +195,19 @@ const deposit = (index) =>
     console.log("you balance is " + userDataTemplat.userDataBase[index].balance)
 }
 
+const takeLoan = (index) =>
+{
+    let amount = ""
+    while(isNaN(amount) || amount < 0 ||  amount < userDataTemplat.userDataBase[index].balance * 0.2)
+    {
+        amount = prompt("hom big is the loan you want:")
+    }
+    userDataTemplat.userDataBase[index].balance += amount
+    userDataTemplat.userDataBase[index].loan = true
+    console.log("you took a loan of "+ amount)
+    console.log("you balance is " + userDataTemplat.userDataBase[index].balance)
+}
+
 sigeIn()
 console.log(userDataTemplat.userDataBase)
 
@@ -246,7 +260,7 @@ console.log(userDataTemplat.userDataBase)
 //             * Withdraw Money:
 //             - If the user chooses this option, they can withdraw an amount from their bank (not exceeding the available amount).
             
-//             ? Deposit Money:
+//             * Deposit Money:
 //             - If the user chooses this option, they can deposit the desired amount (not exceeding 1000 dirhams).
             
 //             ? Take a Loan:
