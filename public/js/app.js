@@ -26,6 +26,15 @@ class userDataTemplat {
     }
 }
 
+// choosing an action
+let action 
+while(!(action == 1 || action == "sign up" || action == 2 || action == "loge in"|| action == 3 || action == "change password"||action == "password"))
+{
+    action = prompt("Enter the number of the option or its name to continue\n1 :sign up\n2 :loge in\n3 :change password")
+}
+
+console.log(action);
+
 
 //     + If the user only writes "exit," they exit the current process, and the choice question is asked again.
 //         * If the user chooses to sign up, here are the details they must enter:
