@@ -39,7 +39,6 @@ const capitalize = (string) =>
 {
     let splitedStr = string.toLowerCase().split(" ")
     let i = 0
-    console.log(splitedStr)
     while(i < splitedStr.length)
     {
         splitedStr[i] = splitedStr[i].charAt(0).toUpperCase() + splitedStr[i].substring(1)
@@ -52,7 +51,7 @@ const howMany = (string, char) =>
 {
     let i = 0
     let count = 0
-    whilel(i < string.length)
+    while(i < string.length)
     {
         if(string[i] == char)
             count++
@@ -75,13 +74,18 @@ const  sigeIn = () =>
     
     // get username
     step = ""
-    while(step.length < 10 || step.includes(" ") || step.)
+    while(step.length < 10 || step.trim().includes(" ") || howMany(step,"@") != 1 || userDataTemplat.userDataBase.some(e => e.email == step))
     {
-        step = prompt("Enter a valid Email (name should be at least 5 character long and no special characters):").trim().toLowerCase()
+        step = prompt("Enter a valid Email :").trim().toLowerCase()
     }
-}
 
+    // user.email = step 
+    // userDataTemplat.userDataBase.push(user)
+    // console.log(userDataTemplat.userDataBase)
+    
+}
 sigeIn()
+
 //     + If the user only writes "exit," they exit the current process, and the choice question is asked again.
 //         * If the user chooses to sign up, here are the details they must enter:
 //             # Name (Full):
