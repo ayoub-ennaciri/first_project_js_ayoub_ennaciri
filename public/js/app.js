@@ -175,10 +175,22 @@ const Withdraw = (index) =>
     let amount = ""
     while(isNaN(amount) || amount < 0 || amount >= userDataTemplat.userDataBase[index].balance)
     {
-        amount = prompt("hom much do you want to withdraw")
+        amount = prompt("hom much do you want to withdraw :")
     }
     userDataTemplat.userDataBase[index].balance -= amount
     console.log("you withdraw "+ amount)
+    console.log("you balance is " + userDataTemplat.userDataBase[index].balance)
+}
+
+const deposit = (index) =>
+{
+    let amount = ""
+    while(isNaN(amount) || amount < 0)
+    {
+        amount = prompt("hom much do you want to diposit :")
+    }
+    userDataTemplat.userDataBase[index].balance += amount
+    console.log("you diposited "+ amount)
     console.log("you balance is " + userDataTemplat.userDataBase[index].balance)
 }
 
@@ -231,7 +243,7 @@ console.log(userDataTemplat.userDataBase)
 //             ? Logout:
 //             - If the user chooses this option, they are logged out and offered the option, as at the beginning, to sign up, log in, or change the password.
             
-//             ? Withdraw Money:
+//             * Withdraw Money:
 //             - If the user chooses this option, they can withdraw an amount from their bank (not exceeding the available amount).
             
 //             ? Deposit Money:
