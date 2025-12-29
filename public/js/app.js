@@ -26,6 +26,8 @@ class userDataTemplat {
         this.age = age
         this.balance = balance
         this.loan = false
+        this.invest = false
+        this.maxErnings = 120
     }
 }
 
@@ -176,7 +178,7 @@ const Withdraw = (index) =>
     let amount = ""
     while(isNaN(amount) || amount < 0 || amount >= userDataTemplat.userDataBase[index].balance)
     {
-        amount = prompt("hom much do you want to withdraw :")
+        amount = parseInt(prompt("hom much do you want to withdraw :"))
     }
     userDataTemplat.userDataBase[index].balance -= amount
     console.log("you withdraw "+ amount)
@@ -188,7 +190,7 @@ const deposit = (index) =>
     let amount = ""
     while(isNaN(amount) || amount < 0)
     {
-        amount = prompt("hom much do you want to diposit :")
+        amount = parseInt(prompt("hom much do you want to diposit :"))
     }
     userDataTemplat.userDataBase[index].balance += amount
     console.log("you diposited "+ amount)
@@ -200,7 +202,7 @@ const takeLoan = (index) =>
     let amount = ""
     while(isNaN(amount) || amount < 0 ||  amount < userDataTemplat.userDataBase[index].balance * 0.2)
     {
-        amount = prompt("hom big is the loan you want:")
+        amount = parseInt(prompt("hom big is the loan you want:"))
     }
     userDataTemplat.userDataBase[index].balance += amount
     userDataTemplat.userDataBase[index].loan = true
@@ -208,6 +210,18 @@ const takeLoan = (index) =>
     console.log("you balance is " + userDataTemplat.userDataBase[index].balance)
 }
 
+const invest = (index)=>
+{
+    let amount = ""
+    while(isNaN(amount) || amount < 0 ||  amount < userDataTemplat.userDataBase[index].balance )
+    {
+        amount = parseInt(prompt("hom much you want to invest:"))
+    }
+    userDataTemplat.userDataBase[index].balance -= amount
+    userDataTemplat.userDataBase[index].invest = true
+    console.log("you invested "+ amount)
+    console.log("you balance is " + userDataTemplat.userDataBase[index].balance)
+}
 sigeIn()
 console.log(userDataTemplat.userDataBase)
 
@@ -263,7 +277,7 @@ console.log(userDataTemplat.userDataBase)
 //             * Deposit Money:
 //             - If the user chooses this option, they can deposit the desired amount (not exceeding 1000 dirhams).
             
-//             ? Take a Loan:
+//             * Take a Loan:
 //             - If the user chooses this option, they can take a loan up to 20% of what they already have.
 //             - They receive an additional 20%, but lose 10% with each login until reaching the amount of their loan.
             
