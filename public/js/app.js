@@ -1,5 +1,6 @@
 // ### First Project JavaScript:
 
+
 // ## 1 - Instructions:
 // - Create a folder named: first_project_js_firstName_lastName
 // - Create a repository with the same name as the folder
@@ -27,13 +28,41 @@ class userDataTemplat {
 }
 
 // choosing an action
-let action 
-while(!(action == 1 || action == "sign up" || action == 2 || action == "loge in"|| action == 3 || action == "change password"||action == "password"))
+// let action 
+// while(!(action == 1 || action == "sign up" || action == 2 || action == "loge in"|| action == 3 || action == "change password"||action == "password"))
+// {
+//     action = prompt("Enter the number of the option or its name to continue\n1 :sign up\n2 :loge in\n3 :change password")
+// }
+
+
+const capitalize = (string) =>
 {
-    action = prompt("Enter the number of the option or its name to continue\n1 :sign up\n2 :loge in\n3 :change password")
+    let splitedStr = string.toLowerCase().split(" ")
+    let i = 0
+    console.log(splitedStr)
+    while(i < splitedStr.length)
+    {
+        splitedStr[i] = splitedStr[i].charAt(0).toUpperCase() + splitedStr[i].substring(1)
+        i++
+        console.log("hello")
+    }
+    return splitedStr.join(" ")
 }
 
-console.log(action);
+const  sigeIn = () =>
+{
+    let user = new userDataTemplat
+    let step = ""
+    while(step.length < 5 || step.includes("@"))
+    {
+        step = prompt("Enter a valid name (name should be at least 5 character long and no special characters):")
+    }
+    
+    step.trim()
+
+
+    console.log(step)
+}
 
 
 //     + If the user only writes "exit," they exit the current process, and the choice question is asked again.
