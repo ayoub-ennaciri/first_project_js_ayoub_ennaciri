@@ -26,8 +26,12 @@ class userDataTemplat {
         this.age = age
         this.balance = balance
         this.loan = false
+        this.loansize = 0
         this.invest = false
+        this.investSize = 0
         this.maxErnings = 120
+        this.tran 
+        this.history
     }
 }
 
@@ -143,7 +147,6 @@ const logeIn = () =>
         return pass
     }
 }
-userDataTemplat.userDataBase.push({name: "ayoub",email:"ayoubennacir@gmail.com",password : "gtasani@"})
 
 const changePass = (index) =>
 {
@@ -175,8 +178,8 @@ const changePass = (index) =>
 
 const Withdraw = (index) =>
 {
-    let amount = ""
-    while(isNaN(amount) || amount < 0 || amount >= userDataTemplat.userDataBase[index].balance)
+    let amount = "a"
+    while( amount >= userDataTemplat.userDataBase[index].balance || amount < 0 || isNaN(amount))
     {
         amount = parseInt(prompt("hom much do you want to withdraw :"))
     }
@@ -184,10 +187,11 @@ const Withdraw = (index) =>
     console.log("you withdraw "+ amount)
     console.log("you balance is " + userDataTemplat.userDataBase[index].balance)
 }
-
+let arrays = []
+arrays.push
 const deposit = (index) =>
 {
-    let amount = ""
+    let amount = "a "    
     while(isNaN(amount) || amount < 0)
     {
         amount = parseInt(prompt("hom much do you want to diposit :"))
@@ -199,11 +203,12 @@ const deposit = (index) =>
 
 const takeLoan = (index) =>
 {
-    let amount = ""
-    while(isNaN(amount) || amount < 0 ||  amount < userDataTemplat.userDataBase[index].balance * 0.2)
+    let amount = "a"
+    while(isNaN(amount) || amount >0 ||  amount < userDataTemplat.userDataBase[index].balance * 0.2)
     {
         amount = parseInt(prompt("hom big is the loan you want:"))
     }
+    userDataTemplat.userDataBase[pass.index].loansize = amount
     userDataTemplat.userDataBase[index].balance += amount
     userDataTemplat.userDataBase[index].loan = true
     console.log("you took a loan of "+ amount)
@@ -212,17 +217,90 @@ const takeLoan = (index) =>
 
 const invest = (index)=>
 {
-    let amount = ""
-    while(isNaN(amount) || amount < 0 ||  amount < userDataTemplat.userDataBase[index].balance )
+    let amount = "a"
+    while(isNaN(amount) || amount > 0 ||  amount < userDataTemplat.userDataBase[index].balance )
     {
         amount = parseInt(prompt("hom much you want to invest:"))
     }
+    
     userDataTemplat.userDataBase[index].balance -= amount
     userDataTemplat.userDataBase[index].invest = true
     console.log("you invested "+ amount)
     console.log("you balance is " + userDataTemplat.userDataBase[index].balance)
 }
-sigeIn()
+
+const bank = () =>
+{
+    // choose between sign up or log in 
+    let option = ""
+    while(true)
+    {
+        while(!(option == "sign up"||option == "1"||option == "log in"||option == "2"))
+    {
+        option = prompt("Welcom to bank lmzalit\n1: sign up\n2: log in")
+    }
+
+    switch (true) {
+        case (option == 1 || option == "sign up"):
+            sigeIn();
+            option = ""
+            break;
+    
+        case (option == 2 || option == "log in"):
+            let pass =logeIn()
+            if(pass.stat)
+            {
+                option = ""
+                while(!(option == "withdraw"||option == "1"||option == "deposit"||option == "2"||option == "take loan"||option == "3"||option == "invest"||option == "4"||option == "history"||option == "5"||option == "logout"||option == "6"))
+                {
+                    option = prompt("1: withdraw\n2: deposit\n3: take loan\n4: invest\n5: history\n6: logout\n")
+                }
+                if(userDataTemplat.userDataBase[pass.index].loan)
+                {
+                    userDataTemplat.userDataBase[pass.index].balance -=  userDataTemplat.userDataBase[pass.index].loansize
+                }
+
+                switch (true) {
+                    case (option == 1 || "Withdraw"):
+                        Withdraw(pass.index)
+                        // userDataTemplat.userDataBase[pass.index].history.push("withdraw money")
+                        break;
+                    case (option == 2 || "deposit"):
+                        deposit(pass.index)
+                        // userDataTemplat.userDataBase[pass.index].history.push("deposit money")
+                        break;
+                    case (option == 3 || "take loan"):
+                        takeLoan(pass.index)
+                        // userDataTemplat.userDataBase[pass.index].history.push("took a loan")
+                        break;
+                    case (option == 4 || "invest"):
+                        // userDataTemplat.userDataBase[pass.index].history.push("invested money")
+                        invest(pass.index)
+                        break;
+                    case (option == 5 || "history"):
+                        let i = 0
+                        console.log("history in future update")
+                        break;
+                    case (option == 6 || "log out"):
+                        console("log out")
+                        break;
+                    default:
+                        break;
+                }
+            }
+            option = ""
+            break
+
+        default:
+            break;
+    }   
+    }
+    
+}
+
+userDataTemplat.userDataBase.push({name: "ayoub",email:"ayoubennacir@gmail.com",password : "gtasani@", balance : 500})
+bank()
+// Withdraw(0)
 console.log(userDataTemplat.userDataBase)
 
 //     + If the user only writes "exit," they exit the current process, and the choice question is asked again.
@@ -268,7 +346,7 @@ console.log(userDataTemplat.userDataBase)
 //             - They must enter their existing Email in the Database.
 
 //         ! After the user logs in, display the amount they have in their bank (user's choice) and offer them services:
-//             ? Logout:
+//             * Logout:
 //             - If the user chooses this option, they are logged out and offered the option, as at the beginning, to sign up, log in, or change the password.
             
 //             * Withdraw Money:
@@ -281,9 +359,11 @@ console.log(userDataTemplat.userDataBase)
 //             - If the user chooses this option, they can take a loan up to 20% of what they already have.
 //             - They receive an additional 20%, but lose 10% with each login until reaching the amount of their loan.
             
-//             ? Invest:
+//             * Invest:
 //             - If the user chooses this option, they can invest any amount in the bank.
 //             - Upon the next login, they will receive 20% of their investment each time until reaching 120% (earning 20% on each investment).
             
 //             ? History:
 //             - Ability to view the entire transaction history.
+
+
