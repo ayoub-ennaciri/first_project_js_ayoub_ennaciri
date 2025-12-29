@@ -80,6 +80,15 @@ const  sigeIn = () =>
     }
 
     user.email = step
+
+    // get age 
+    step = ""
+    while(isNaN(step) || step <= 16 || step >= 100  )
+    {
+        step = parseInt(prompt("enter your age"))
+    }
+    user.age = step
+
     // get password
     step = ""
     while(step.length < 7 || !( step.trim().includes("@") || step.trim().includes("#") || step.trim().includes("-") || step.trim().includes("+") || step.trim().includes("*") || step.trim().includes("/")))
@@ -106,34 +115,65 @@ const logeIn = () =>
 {
     let email =""
     let password =""
+    let pass = {stat : "" ,index : ""}
     while(true)
     {
         email = prompt("Enter your email :")
         password = prompt("Enter your password :")
 
         let index = userDataTemplat.userDataBase.findIndex(e => e.email == email) 
+        pass.index = index
         if(index != -1)
         {
             console.log("this email exist");
             if(userDataTemplat.userDataBase[index].password == password)
             {
                 console.log("welcome nigga")
-                return true
+                pass.stat = true
+                return pass
             }
             
         }
         console.log("email or password does not exist")
-        return false
+        pass.stat = false
+        return pass
     }
 }
 userDataTemplat.userDataBase.push({name: "ayoub",email:"ayoubennacir@gmail.com",password : "gtasani@"})
 
+const changePass = (index) =>
+{
 
+    let pass = prompt("enter your current password")
+    while(pass == userDataTemplat.userDataBase[index].password)
+    {
+    
+         // get password
+        pass = ""        
+        while(pass.length < 7 || !( pass.trim().includes("@") || pass.trim().includes("#") || pass.trim().includes("-") || pass.trim().includes("+") || pass.trim().includes("*") || pass.trim().includes("/")))
+        {
+            pass = prompt("Enter a new valid password :").trim()
+        }
+    
+        // check password
+        let steprepet = ""
+        steprepet = prompt("confirm password")
+        if( pass == steprepet)
+        {
+            userDataTemplat.userDataBase[index].password = pass
+            console.log("password changed successfully");
+            return true
+        }
+    }
+    console.log("passwords do not match up")
+    return false
+}
 
-console.log(logeIn())
+sigeIn()
+console.log(userDataTemplat.userDataBase)
 
 //     + If the user only writes "exit," they exit the current process, and the choice question is asked again.
-//         * If the user chooses to sign up, here are the details they must enter:
+//         ! If the user chooses to sign up, here are the details they must enter:
 //             # Name (Full):
 //             - Check for leading or trailing spaces.
 //             - The first letter should be capitalized.
@@ -164,7 +204,7 @@ console.log(logeIn())
 //             # Password_confirmed:
 //             - The user must re-enter their exact password; otherwise, they are blocked.
 
-//         * If the user chooses to log in, here are the details they must enter:
+//         ! If the user chooses to log in, here are the details they must enter:
 //             # Email:
 //             - Check if the email exists in our Database.
             
