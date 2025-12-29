@@ -65,25 +65,34 @@ const  sigeIn = () =>
     let user = new userDataTemplat
     // get name
     let step = ""
-    while(step.length < 5 || step.includes("@"))
-    {
-        step = prompt("Enter a valid name (name should be at least 5 character long and no special characters):").trim()
-    }
+    // while(step.length <= 5 || step.includes("@"))
+    // {
+    //     step = prompt("Enter a valid name (name should be at least 5 character long and no special characters):").trim()
+    // }
     
-    user.name = capitalize(step.trim())
+    // user.name = capitalize(step.trim())
     
-    // get username
+    // // get username
+    // step = ""
+    // while(step.length <= 10 || step.trim().includes(" ") || howMany(step,"@") != 1 || userDataTemplat.userDataBase.some(e => e.email == step))
+    // {
+    //     step = prompt("Enter a valid Email :").trim().toLowerCase()
+    // }
+
+    // get password
     step = ""
-    while(step.length < 10 || step.trim().includes(" ") || howMany(step,"@") != 1 || userDataTemplat.userDataBase.some(e => e.email == step))
+    while(step.length <= 7 || !( step.trim().includes("@") || step.trim().includes("#") || step.trim().includes("-") || step.trim().includes("+") || step.trim().includes("*") || step.trim().includes("/")))
     {
-        step = prompt("Enter a valid Email :").trim().toLowerCase()
+        step = prompt("Enter a valid password :").trim()
     }
 
-    // user.email = step 
-    // userDataTemplat.userDataBase.push(user)
-    // console.log(userDataTemplat.userDataBase)
+    user.password = step 
+    userDataTemplat.userDataBase.push(user)
+    console.log(userDataTemplat.userDataBase)
     
 }
+
+
 sigeIn()
 
 //     + If the user only writes "exit," they exit the current process, and the choice question is asked again.
