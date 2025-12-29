@@ -18,12 +18,13 @@
 //     + Allow the user, via prompts, to choose between signing up, logging in, or changing the password.
 class userDataTemplat {
     static userDataBase = []
-    constructor(name ,password, email, age)
+    constructor(name ,password, email, age, balance)
     {
         this.name =  name 
         this.password = password
         this.email = email
         this.age = age
+        this.balance = balance
     }
 }
 
@@ -169,6 +170,18 @@ const changePass = (index) =>
     return false
 }
 
+const Withdraw = (index) =>
+{
+    let amount = ""
+    while(isNaN(amount) || amount < 0 || amount >= userDataTemplat.userDataBase[index].balance)
+    {
+        amount = prompt("hom much do you want to withdraw")
+    }
+    userDataTemplat.userDataBase[index].balance -= amount
+    console.log("you withdraw "+ amount)
+    console.log("you balance is " + userDataTemplat.userDataBase[index].balance)
+}
+
 sigeIn()
 console.log(userDataTemplat.userDataBase)
 
@@ -211,26 +224,26 @@ console.log(userDataTemplat.userDataBase)
 //             # Password:
 //             - Check if the entered password is associated with the previously entered email.
 
-//         * If the user chooses to change the password:
+//          If the user chooses to change the password:
 //             - They must enter their existing Email in the Database.
 
-//         * After the user logs in, display the amount they have in their bank (user's choice) and offer them services:
-//             # Logout:
+//         ! After the user logs in, display the amount they have in their bank (user's choice) and offer them services:
+//             ? Logout:
 //             - If the user chooses this option, they are logged out and offered the option, as at the beginning, to sign up, log in, or change the password.
             
-//             # Withdraw Money:
+//             ? Withdraw Money:
 //             - If the user chooses this option, they can withdraw an amount from their bank (not exceeding the available amount).
             
-//             # Deposit Money:
+//             ? Deposit Money:
 //             - If the user chooses this option, they can deposit the desired amount (not exceeding 1000 dirhams).
             
-//             # Take a Loan:
+//             ? Take a Loan:
 //             - If the user chooses this option, they can take a loan up to 20% of what they already have.
 //             - They receive an additional 20%, but lose 10% with each login until reaching the amount of their loan.
             
-//             # Invest:
+//             ? Invest:
 //             - If the user chooses this option, they can invest any amount in the bank.
 //             - Upon the next login, they will receive 20% of their investment each time until reaching 120% (earning 20% on each investment).
             
-//             # History:
+//             ? History:
 //             - Ability to view the entire transaction history.
