@@ -65,31 +65,40 @@ const  sigeIn = () =>
     let user = new userDataTemplat
     // get name
     let step = ""
-    // while(step.length <= 5 || step.includes("@"))
-    // {
-    //     step = prompt("Enter a valid name (name should be at least 5 character long and no special characters):").trim()
-    // }
-    
-    // user.name = capitalize(step.trim())
-    
-    // // get username
-    // step = ""
-    // while(step.length <= 10 || step.trim().includes(" ") || howMany(step,"@") != 1 || userDataTemplat.userDataBase.some(e => e.email == step))
-    // {
-    //     step = prompt("Enter a valid Email :").trim().toLowerCase()
-    // }
-
-    // get password
-    step = ""
-    while(step.length <= 7 || !( step.trim().includes("@") || step.trim().includes("#") || step.trim().includes("-") || step.trim().includes("+") || step.trim().includes("*") || step.trim().includes("/")))
+    while(step.length < 5 || step.includes("@"))
     {
-        step = prompt("Enter a valid password :").trim()
+        step = prompt("Enter a valid name (name should be at least 5 character long and no special characters):").trim()
+    }
+    
+    user.name = capitalize(step.trim())
+    
+    // get username
+    step = ""
+    while(step.length < 10 || step.trim().includes(" ") || howMany(step,"@") != 1 || userDataTemplat.userDataBase.some(e => e.email == step))
+    {
+        step = prompt("Enter a valid Email :").trim().toLowerCase()
     }
 
-    user.password = step 
+    user.email = step
+    // get password
+    step = ""
+    while(step.length < 7 || !( step.trim().includes("@") || step.trim().includes("#") || step.trim().includes("-") || step.trim().includes("+") || step.trim().includes("*") || step.trim().includes("/")))
+    {
+        step = prompt("Enter a valid password :").trim()
+
+    }
+
+    // check password
+    let steprepet = ""
+    steprepet = prompt("confirm password")
+    if( step != steprepet)
+    {
+        return -1
+    }
+
+    console.log("user registered successfully")
+    user.password = step
     userDataTemplat.userDataBase.push(user)
-    console.log(userDataTemplat.userDataBase)
-    
 }
 
 
