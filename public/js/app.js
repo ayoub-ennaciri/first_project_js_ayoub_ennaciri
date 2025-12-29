@@ -44,27 +44,44 @@ const capitalize = (string) =>
     {
         splitedStr[i] = splitedStr[i].charAt(0).toUpperCase() + splitedStr[i].substring(1)
         i++
-        console.log("hello")
     }
     return splitedStr.join(" ")
+}
+
+const howMany = (string, char) =>
+{
+    let i = 0
+    let count = 0
+    whilel(i < string.length)
+    {
+        if(string[i] == char)
+            count++
+        i++
+    }
+    return count
 }
 
 const  sigeIn = () =>
 {
     let user = new userDataTemplat
+    // get name
     let step = ""
     while(step.length < 5 || step.includes("@"))
     {
-        step = prompt("Enter a valid name (name should be at least 5 character long and no special characters):")
+        step = prompt("Enter a valid name (name should be at least 5 character long and no special characters):").trim()
     }
     
-    step.trim()
-
-
-    console.log(step)
+    user.name = capitalize(step.trim())
+    
+    // get username
+    step = ""
+    while(step.length < 10 || step.includes(" ") || step.)
+    {
+        step = prompt("Enter a valid Email (name should be at least 5 character long and no special characters):").trim().toLowerCase()
+    }
 }
 
-
+sigeIn()
 //     + If the user only writes "exit," they exit the current process, and the choice question is asked again.
 //         * If the user chooses to sign up, here are the details they must enter:
 //             # Name (Full):
